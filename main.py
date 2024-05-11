@@ -17,7 +17,14 @@ Welcome to the game Hangman
 def guessAletter():
     chosen_letter = input("please guess a character: ")
     chosen_letter = chosen_letter.lower()
-    print(chosen_letter)
+    if len(chosen_letter) > 1 and not chosen_letter.isalpha():
+        print("E3")
+    elif len(chosen_letter) > 1:
+        print("E1")
+    elif not chosen_letter.isalpha():
+        print("E2")
+    else:
+        print(chosen_letter)
 
 def showBoard():
     chosen_word = input("please enter a word: ")
@@ -71,4 +78,4 @@ def printStates():
     |""")
 if __name__ == '__main__':
     openingScreen()
-    showBoard()
+    guessAletter()
