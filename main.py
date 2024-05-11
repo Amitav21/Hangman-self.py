@@ -1,17 +1,22 @@
 import random
 
 def openingScreen():
-        print("Welcome to the game Hangman")
-        print("""      _    _                                         
+    HANGMAN_ASCII_ART = """
+Welcome to the game Hangman
+      _    _                                         
      | |  | |                                        
      | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __  
      |  __  |/ _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
      | |  | | (_| | | | | (_| | | | | | | (_| | | | |
      |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
                           __/ |                      
-                         |___/""")
-        amount_of_lives = random.randint(5,10)
-        print(amount_of_lives)
+                         |___/"""
+    MAX_TRIES = 6
+    print(HANGMAN_ASCII_ART,"\n",MAX_TRIES)
+
+def guessAletter():
+    chosen_letter = input("please guess a character: ")
+    print(chosen_letter)
 
 def printStates():
     print("first state:")
@@ -60,3 +65,4 @@ def printStates():
     |""")
 if __name__ == '__main__':
     openingScreen()
+    guessAletter()
