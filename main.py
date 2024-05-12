@@ -213,10 +213,7 @@ def choose_word(file_path, index):
 
     except FileNotFoundError:
         print("file was not found, please try again\n")
-        words_file_path = input("enter the file path to the file that contains the words: ")
-        words_file_path = words_file_path.replace("\"","")
-        word_index = int(input("\nenter the index for the word (starting at 1): "))
-        chosen_word = choose_word(words_file_path,word_index)
+        chosen_word = get_word_from_file_path_and_index()
     return chosen_word
 
 def print_state(chosen_word,old_letters_guessed,current_tries):
@@ -233,12 +230,11 @@ def print_state(chosen_word,old_letters_guessed,current_tries):
     print_hangman(current_tries)
     show_hidden_word(chosen_word,old_letters_guessed)
 
-def start_game():
-    """Initializes the game by showing the opening screen, getting input and stating the first move.
-    :return: None.
-    :rtype: None.
+def get_word_from_file_path_and_index():
+    """Gets a file path and an index from the user and returns a specific word.
+    :return: The word located in the specific index in the given file.
+    :rtype: str.
     """
-    opening_screen()
     words_file_path = input("enter the file path to the file that contains the words: ")
     words_file_path = words_file_path.replace("\"","")
     while True:
@@ -247,7 +243,15 @@ def start_game():
             break
         except ValueError:
             print("invalid input, please try again")
-    chosen_word = choose_word(words_file_path,word_index)
+    return choose_word(words_file_path,word_index)
+
+def start_game():
+    """Initializes the game by showing the opening screen, getting input and stating the first move.
+    :return: None.
+    :rtype: None.
+    """
+    opening_screen()
+    chosen_word = get_word_from_file_path_and_index()
     old_letters_guessed = list()
     current_tries = 0
     print_state(chosen_word,old_letters_guessed,current_tries)
